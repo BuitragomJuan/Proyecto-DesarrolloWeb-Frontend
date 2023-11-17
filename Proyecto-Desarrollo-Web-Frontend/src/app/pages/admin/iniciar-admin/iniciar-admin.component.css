@@ -1,0 +1,86 @@
+/* Estilos para el componente IniciarAdmin */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    background-image: url('src\assets\images\goodvibes.jpg');
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 1px;
+    text-align: center;
+  }
+
+  a {
+    font-size: 15px;
+    color: #ffffff;
+    margin-bottom: 1px;
+    text-align: center;
+  }
+  
+  form {
+    width: 400px;
+    padding: 0 50px;
+    border-radius: 10px;
+    background-color: #438bbf;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	  flex-direction: column;
+    height: 65%;
+	  text-align: center;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 1px;
+    text-align: center;
+    margin-top: 18px;
+  }
+  
+  input {
+    background-color: #eee;
+    border: none;
+    padding: 10px 12px;
+    margin: 8px 0;
+    width: 80%;
+    border-radius: 15px;
+  }
+  
+  button {
+    width: 70%;
+    padding: 10px 40px;
+    background-color: #220513;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+	  font-weight: bold;
+    letter-spacing: 1px;
+	  text-transform: uppercase;
+	  transition: transform 80ms ease-in;
+    margin: 15px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

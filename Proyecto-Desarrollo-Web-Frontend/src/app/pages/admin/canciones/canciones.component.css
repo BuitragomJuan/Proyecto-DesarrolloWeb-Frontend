@@ -1,0 +1,146 @@
+/* canciones.component.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 420%;
+    background-image: url('src\assets\images\goodvibes.jpg');
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+  }
+  
+  .cancion-form {
+    width: 370px;
+    padding: 0 50px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgb(120, 42, 184);
+    background-color: #8c2f9f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 28%;
+    text-align: center; 
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  button {
+    width: 80%;
+    padding: 8px 15px;
+    background-color: #220513;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: 30px;
+    text-align: center;
+    margin-top: 6px;
+  }
+  
+  .cancion-list {
+    padding: 0 50px;
+    background-color: rgba(120, 42, 184, 0.879);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    width: 370px;
+    align-items: center;  
+    justify-content: center;
+	flex-direction: column;
+    font-size: 18px;
+    height: 28%;
+    text-align: center;
+    margin: 8%;
+  }
+  
+  .actions {
+    margin-top: 10px;
+  }
+  
+  .edit, .delete {
+    width: 80%;
+    padding: 8px 15px;
+    background-color: #220513;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+	font-weight: bold;
+    letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    margin: 20px;
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+  
+  .delete {
+    background-color: #220513;
+  }
+
+  h3 {
+    font-size: 20px;
+    color: #000000;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 1px;
+    text-align: center;
+    margin-top: 1px;
+  }
+    
+  input {
+    background-color: #eee;
+    border: none;
+    padding: 5px 15px;
+    margin: 1px 0;
+    width: 90%;
+    border-radius: 15px;
+  }
+
+select {
+    padding: 3px;
+    margin: 10px 5;
+}
+
+.actions button.edit:hover {
+    background-color: #0056b3;
+  }
+
+  .actions button.delete:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }

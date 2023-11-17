@@ -1,0 +1,31 @@
+<title>contactenos</title>
+<link rel="stylesheet" type="text/css" href="/src/styles.css">
+
+<div class="banner">
+    <h1>Enviar contacto</h1>
+    <form (ngSubmit)="submitForm()">
+        <div class="form-group">
+            <label for="nombre">Nombre</label><br>
+            <input type="text" name="nombre" class="form-control" [(ngModel)]="this.formData.nombre">
+        </div>
+        <pre></pre>
+        <div class="form-group">
+            <label for="apellido">Apellido</label><br>
+            <input type="text" name="apellido" class="form-control" [(ngModel)]="this.formData.apellido">
+        </div>
+        <pre></pre>
+        <div class="form-group">
+            <label for="fecha">Fecha</label><br>
+            <input type="text" name="fecha" class="form-control" [(ngModel)]="this.formData.fecha">
+        </div>
+        <pre></pre>
+        <div class="form-group">
+            <label for="edad">Edad</label><br>
+            <input type="text" name="edad" class="form-control" [(ngModel)]="this.formData.edad">
+        </div>
+        <pre></pre>
+
+        <button type="submit">Enviar</button>
+
+    </form>
+</div>

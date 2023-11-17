@@ -1,0 +1,21 @@
+<title>Buscar canción</title>
+<link rel="stylesheet" type="text/css" href="../buscar-cancion/buscar-cancion.component.css" >
+<div class="container">
+    <h2>Buscar Canción</h2>
+    <form [formGroup]="searchForm" (ngSubmit)="buscar()">
+      <div class="form-group">
+        <label for="term">Ingrese el nombre de la canción:</label>
+        <input type="text" id="term" formControlName="term" />
+      </div>
+      <button type="submit">Buscar</button>
+      <div *ngIf="resultados.length > 0">
+        <label>Resultados:</label>
+        <ul>
+          <li *ngFor="let cancion of resultados">
+            {{ cancion.nombre }} - {{ cancion.artista }}
+          </li>
+        </ul>
+      </div>
+    </form>
+  </div>
+  <router-outlet></router-outlet>

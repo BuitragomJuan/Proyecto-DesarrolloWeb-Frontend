@@ -1,0 +1,157 @@
+/* generos.component.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 125vh;
+    text-align: center;
+    background-image: url('src\assets\images\goodvibes.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  h2 {
+    font-size: 30px;
+    color: #000000;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 20px;
+    color: #000000;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+    
+  .genre-form {
+    width: 400px;
+    padding: 0 50px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgb(120, 42, 184);
+    background-color: #8c2f9f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 55%;
+    text-align: center; 
+  }
+    
+    
+  label {
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 1px;
+    text-align: center;
+    margin-top: 1px;
+  }
+    
+  input,
+  textarea {
+    background-color: #eee;
+    border: none;
+    padding: 10px 12px;
+    margin: 2px 0;
+    width: 80%;
+    border-radius: 15px;
+  }
+    
+  button {
+    width: 70%;
+    padding: 10px 40px;
+    background-color: #220513;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin-bottom: 0px;
+  }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 10;
+    }
+    
+    li {
+      margin: 10px 0;
+      padding: 20px;
+      background-color: rgb(120, 42, 184);
+      display: flex;
+      justify-content: space-between;
+      border-radius: 30px;
+      width: 410px;
+      align-items: center;  
+      justify-content: center;
+        flex-direction: column;
+      font-size: 20px;
+    }
+    
+    .actions {
+      display: flex;
+      align-items: center;  
+      justify-content: center;
+    }
+    
+    .actions button {
+      margin-left: 10px;
+    }
+    
+    .actions button.edit {
+      width: 40%;
+      padding: 10px 40px;
+      background-color: #220513;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+        font-weight: bold;
+      letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+      margin: 13px;
+  
+    }
+    
+    .actions button.edit:hover {
+      background-color: #0056b3;
+    }
+    
+    .actions button.delete {
+      width: 40%;
+      padding: 10px 40px;
+      background-color: #220513;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+        font-weight: bold;
+      letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+      margin: 13px;
+    }
+    
+    .actions button.delete:hover {
+      background-color: #0056b3;
+    }
+    
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    
+    

@@ -1,0 +1,66 @@
+/* votar-desvotar.component.css */
+
+.canciones-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90vh;
+    background-image: url('src\assets\images\goodvibes.jpg');
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+  }
+  
+  .cancion-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 35%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(120, 42, 184);
+    background-color: #8c2f9f;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 33%;
+    text-align: center;
+  }
+  
+  .votos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    flex-direction: column;
+    height: 50%;
+    text-align: center;
+    margin-top: 0px;
+  }
+  
+  .votos-container button {
+      width: 45%;
+      padding: 4px;
+      background-color: #220513;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 13px;
+        text-transform: uppercase;
+      margin: 0 3%;
+      line-height: 1.5;
+  }
+  
+  .votos-container button + button {
+    margin: 1%; /* Margen a la izquierda del segundo botón */
+  }
+  
+  .votos-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  p{
+    font-size: 22px;
+    color: #000000;
+    text-align: center;
+  }
