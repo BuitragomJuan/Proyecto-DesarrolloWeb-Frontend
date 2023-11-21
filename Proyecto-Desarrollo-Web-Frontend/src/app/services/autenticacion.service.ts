@@ -1,7 +1,7 @@
 // autenticacion.service.ts
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,13 +41,17 @@ export class AutenticacionService {
       })
     );
   }
-  authenticateVotante(email: string, password: string): Observable<any> {
-    const url = `${this.apiUrl}/authenticate`;  // Ajusta la URL según la ruta de autenticación en tu backend
-    const body = { username: email, password };
+  authenticateVotante(correo: string, password: string): Observable<any> {
+    const url = `${this.apiUrl}/api/authenticate`;
+    const body = { correo, password };
 
     return this.http.post(url, body).pipe(
       tap((res: any) => {
         localStorage.setItem('token', res.token);
+      }),
+      catchError((error) => {
+        console.error('Authentication error:', error);
+        return throwError(error);
       })
     );
   }

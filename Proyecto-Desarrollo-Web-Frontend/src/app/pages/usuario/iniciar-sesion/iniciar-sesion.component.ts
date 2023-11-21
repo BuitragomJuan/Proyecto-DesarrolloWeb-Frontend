@@ -9,24 +9,23 @@ import { AutenticacionService } from 'src/app/services/autenticacion.service';
   styleUrls: ['./iniciar-sesion.component.css']
 })
 export class IniciarSesionComponent {
-  votanteEmail: string = '';
-  votantePassword: string = '';
+  correo: string = '';
+  password: string = '';
   mensajeError: string = '';
 
   constructor(private authService: AutenticacionService, private router: Router){}
 
   onSubmit() {
     // Lógica de autenticación utilizando el servicio AutenticacionService
-    this.authService.authenticateVotante(this.votanteEmail, this.votantePassword).pipe(
+    this.authService.authenticateVotante(this.correo, this.password).pipe(
       tap(response => {
         // Autenticación exitosa, redirigir a la página de administrador
         this.router.navigate(['/bienvenida']); // Ajusta la ruta según tu aplicación
       }),
       catchError(error => {
-        // Autenticación fallida, mostrar un mensaje de error
-        this.mensajeError = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
+        console.error('Error during authentication:', error);
         throw error;
-      })
+    })
     ).subscribe();
   }
 
