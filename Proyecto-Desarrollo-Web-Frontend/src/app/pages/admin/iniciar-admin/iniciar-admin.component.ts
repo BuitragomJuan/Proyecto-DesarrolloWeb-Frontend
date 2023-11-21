@@ -21,6 +21,7 @@ export class IniciarAdminComponent {
       tap(response => {
         // Autenticación exitosa, redirigir a la página de administrador
         this.router.navigate(['/welcome']); // Ajusta la ruta según tu aplicación
+        console.log('Token JWT:', response.token);
       }),
       catchError(error => {
         // Autenticación fallida, mostrar un mensaje de error

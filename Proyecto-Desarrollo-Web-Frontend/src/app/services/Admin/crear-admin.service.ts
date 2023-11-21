@@ -12,6 +12,6 @@ export class CrearAdminService {
   constructor(private http: HttpClient) {}
 
   createAdmin(adminData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup/administrador`, adminData);
+    return this.http.post(`${this.apiUrl}/api/admin/registro`, adminData);
   }
 }
