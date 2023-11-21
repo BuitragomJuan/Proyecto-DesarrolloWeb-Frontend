@@ -1,7 +1,11 @@
 <link rel="stylesheet" type="text/css" href="../crear-admin/crear-admin.component.css" >
 <div class="container">
-  <h1>Crear cuenta votante</h1>
-  <form (ngSubmit)="createAccount()">
+  <h1>Crear cuenta admin</h1>
+  <form (ngSubmit)="createAccountAdmin()">
+
+    <label for="id">ID:</label>
+    <input type="string" id="id" name="id" required [(ngModel)]="id">
+
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" required [(ngModel)]="nombre">
 
@@ -11,7 +15,7 @@
     <label for="contraseña">Contraseña:</label>
     <input type="password" id="password" name="password" required [(ngModel)]="password">
 
-    <button type="submit">Crear cuenta</button>
+    <button type="submit" routerLink="/welcome">Crear cuenta</button>
   </form>
 </div>
 <router-outlet></router-outlet>

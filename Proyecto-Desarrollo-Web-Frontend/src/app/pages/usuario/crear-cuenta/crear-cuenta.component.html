@@ -1,7 +1,11 @@
 <link rel="stylesheet" type="text/css" href="../crear-cuenta/crear-cuenta.component.css" >
 <div class="container">
   <h1>Crear cuenta votante</h1>
-  <form (ngSubmit)="createAccount()">
+  <form (ngSubmit)="createAccountVotante()">
+
+    <label for="id">ID:</label>
+    <input type="string" id="id" name="id" required [(ngModel)]="id">
+    
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" required [(ngModel)]="nombre">
 

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-iniciar-admin',
@@ -8,15 +10,22 @@ import { Component } from '@angular/core';
 export class IniciarAdminComponent {
   adminEmail: string = '';
   adminPassword: string = '';
+  mensajeError: string = '';
+
+  constructor(private authService: AutenticacionService, private router: Router){}
 
   onSubmit() {
-    // Aquí puedes agregar la lógica de autenticación para administradores
-    if (this.adminEmail === 'correo@admin.com' && this.adminPassword === 'contraseña') {
-      // Autenticación exitosa, puedes redirigir a la página de administrador
-      // this.router.navigate(['/dashboard-admin']); // Ajusta la ruta según tu aplicación
-    } else {
-      // Autenticación fallida, muestra un mensaje de error
-    }
+    // Lógica de autenticación utilizando el servicio AutenticacionService
+    this.authService.authenticateAdmin(this.adminEmail, this.adminPassword).subscribe(
+      (response) => {
+        // Autenticación exitosa, redirigir a la página de administrador
+        this.router.navigate(['/welcome']); // Ajusta la ruta según tu aplicación
+      },
+      (error) => {
+        // Autenticación fallida, mostrar un mensaje de error
+        this.mensajeError = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
+      }
+    );
   }
 }
 

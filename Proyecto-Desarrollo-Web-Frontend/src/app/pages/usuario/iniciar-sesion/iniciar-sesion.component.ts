@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -8,15 +10,22 @@ import { Component } from '@angular/core';
 export class IniciarSesionComponent {
   votanteEmail: string = '';
   votantePassword: string = '';
+  mensajeError: string = '';
+
+  constructor(private authService: AutenticacionService, private router: Router){}
 
   onSubmit() {
-    // Aquí puedes agregar la lógica de autenticación para votantes
-    if (this.votanteEmail === 'correo@admin.com' && this.votantePassword === 'contraseña') {
-      // Autenticación exitosa, puedes redirigir a la página de votante
-      //this.router.navigate(['/bienvenida']); // Ajusta la ruta según tu aplicación
-    } else {
-      // Autenticación fallida, muestra un mensaje de error
-    }
+    // Lógica de autenticación utilizando el servicio AutenticacionService
+    this.authService.authenticateVotante(this.votanteEmail, this.votantePassword).subscribe(
+      (response) => {
+        // Autenticación exitosa, redirigir a la página de administrador
+        this.router.navigate(['/bienvenida']); // Ajusta la ruta según tu aplicación
+      },
+      (error) => {
+        // Autenticación fallida, mostrar un mensaje de error
+        this.mensajeError = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
+      }
+    );
   }
 
 }
