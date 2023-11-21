@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, tap } from 'rxjs';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
@@ -16,16 +17,17 @@ export class IniciarSesionComponent {
 
   onSubmit() {
     // Lógica de autenticación utilizando el servicio AutenticacionService
-    this.authService.authenticateVotante(this.votanteEmail, this.votantePassword).subscribe(
-      (response) => {
+    this.authService.authenticateVotante(this.votanteEmail, this.votantePassword).pipe(
+      tap(response => {
         // Autenticación exitosa, redirigir a la página de administrador
         this.router.navigate(['/bienvenida']); // Ajusta la ruta según tu aplicación
-      },
-      (error) => {
+      }),
+      catchError(error => {
         // Autenticación fallida, mostrar un mensaje de error
         this.mensajeError = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
-      }
-    );
+        throw error;
+      })
+    ).subscribe();
   }
 
 }

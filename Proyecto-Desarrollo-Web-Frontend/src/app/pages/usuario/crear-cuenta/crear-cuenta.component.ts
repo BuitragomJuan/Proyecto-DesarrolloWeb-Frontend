@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, tap } from 'rxjs';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
@@ -16,14 +17,15 @@ export class CrearCuentaComponent {
   constructor(private authService: AutenticacionService, private router: Router) { }
   
   createAccountVotante() {
-    this.authService.registrarUsuarioVotante(this.nombre, this.correo, this.password, this.id).subscribe(
-      (response)=>{
+    this.authService.registrarUsuarioVotante(this.nombre, this.correo, this.password, this.id).pipe(
+      tap(response=>{
         console.log('Cuenta creada exitosamente', response);
         this.router.navigate(['/bienvenida']);
-      },
-      (error) => {
+      }),
+      catchError(error => {
         console.error('Error al crear la cuenta', error);
-      }
-    );
+        throw error;
+      })
+    ).subscribe();
   }
 }

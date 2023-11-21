@@ -14,7 +14,7 @@ export class AutenticacionService {
 
   registrarUsuarioAdmin(nombre: string, correo: string, password: string, id:string): Observable<any> {
     // Lógica para enviar la solicitud de registro al backend
-    const url = `${this.apiUrl}/signup/administrador`;
+    const url = `${this.apiUrl}/api/admin/registro`;
     const body = {nombre, correo, password, id};
     return this.http.post(url, body);
   }
