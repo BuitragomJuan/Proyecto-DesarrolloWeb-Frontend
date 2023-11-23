@@ -1,0 +1,34 @@
+<title>Buscar canción</title>
+<link rel="stylesheet" type="text/css" href="../buscar-cancion/buscar-cancion.component.css" >
+<div class="ver-canciones-container">
+  <h2>Buscar Canciones</h2>
+
+<div class="busqueda-canciones">
+  <label>Nombre:</label>
+    <input [(ngModel)]="nombre" type="text" placeholder="Nombre">
+
+    <label>Artista:</label>
+    <input [(ngModel)]="artista" type="text" placeholder="Artista">
+
+    <label>Género:</label>
+    <input [(ngModel)]="genero" type="text" placeholder="Género">
+
+    <button (click)="buscarCanciones()">Buscar</button>
+</div>
+
+  <!-- Mostrar resultados de la búsqueda aquí -->
+  <div *ngIf="canciones.length > 0" class="canciones">
+    <h3>Resultados de la búsqueda:</h3>
+    <ul>
+      <li *ngFor="let cancion of canciones">
+        <div>
+        {{ cancion.nombre }} - {{ cancion.artista }} - {{ cancion.album }} - {{ cancion.genero }}
+      </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="canciones.length === 0">
+    <p>No se encontraron canciones.</p>
+  </div>
+  </div>
+  <router-outlet></router-outlet>

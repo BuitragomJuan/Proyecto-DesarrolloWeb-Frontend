@@ -1,0 +1,27 @@
+<title>Ver listas</title>
+<link rel="stylesheet" type="text/css" href="../ver-listas/ver-listas.component.css">
+<div class="ver-listas-container">
+  <h2>Listas de Reproducción</h2>
+  
+  <div class="listas">
+    <ul>
+      <li *ngFor="let lista of listas">
+        <div (click)="verCanciones(lista)">
+          {{ lista.genero }}
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="selectedLista">
+    <h3>Canciones de {{ selectedLista.genero }}:</h3>
+    <ul>
+      <li *ngFor="let cancion of canciones">
+        <div>
+          {{ cancion.nombre }} - {{ cancion.artista }} - {{ cancion.album }} - {{ cancion.genero }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+

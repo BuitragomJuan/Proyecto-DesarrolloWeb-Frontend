@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VotarDesvotarService } from 'src/app/services/Lista/votar-desvotar.service';
+import { VotarDesvotarService } from 'src/app/services/Usuario/votar-desvotar.service';
 
 @Component({
   selector: 'app-votar-desvotar',

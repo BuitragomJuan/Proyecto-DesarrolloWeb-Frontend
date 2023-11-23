@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs';
-import { AutenticacionService } from 'src/app/services/autenticacion.service';
+//import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -13,20 +13,10 @@ export class IniciarSesionComponent {
   password: string = '';
   mensajeError: string = '';
 
-  constructor(private authService: AutenticacionService, private router: Router){}
+  constructor(private router: Router){}
 
   onSubmit() {
-    // Lógica de autenticación utilizando el servicio AutenticacionService
-    this.authService.authenticateVotante(this.correo, this.password).pipe(
-      tap(response => {
-        // Autenticación exitosa, redirigir a la página de administrador
-        this.router.navigate(['/bienvenida']); // Ajusta la ruta según tu aplicación
-      }),
-      catchError(error => {
-        console.error('Error during authentication:', error);
-        throw error;
-    })
-    ).subscribe();
+    this.router.navigate(['/bienvenida']);
   }
 
 }

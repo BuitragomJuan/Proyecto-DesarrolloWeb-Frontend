@@ -1,75 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Cancion } from 'src/app/models/cancion.model';
+import { Listas } from 'src/app/models/listas.model';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CancionesService {
-  private canciones: any[] = [
-    { 
-      id: 1, 
-      nombre: 'Canción 1', 
-      genero: 'Rock', 
-      rating: 4, 
-      artista: 'Artista 1', 
-      album: 'Álbum 1', 
-      listasID: 1 
-    },
-    { 
-      id: 2, 
-      nombre: 'Canción 2', 
-      genero: 'Pop', 
-      rating: 5, 
-      artista: 'Artista 2', 
-      album: 'Álbum 2', 
-      listasID: 1 
-    },
-    { 
-      id: 3, 
-      nombre: 'Canción 3', 
-      genero: 'Hip Hop', 
-      rating: 3, 
-      artista: 'Artista 3', 
-      album: 'Álbum 3', 
-      listasID: 2 
-    },
-    // ... otras canciones
-  ];
 
-  private listas: any[] = [
-    { id: 1, nombre: 'Lista 1' },
-    { id: 2, nombre: 'Lista 2' },
-    // ... otras listas
-  ];  
+  cancionURL= 'http://localhost:9090/cancion/';
+  listaURL = 'http://localhost:9090/lista/';
 
-  getCanciones(): Observable<any[]> {
-    return of(this.canciones);
+  constructor(private HttpClient: HttpClient){}
+
+  public getCanciones(): Observable<Cancion[]> {
+    return this.HttpClient.get<Cancion[]>(this.cancionURL + 'lista');
   }
 
-  getCancion(id: number): Observable<any | undefined> {
-    return of(this.canciones.find(cancion => cancion.id === id));
+  public getCancion(id: number): Observable<Cancion> {
+    return this.HttpClient.get<Cancion>(this.cancionURL + `detail/${id}`);
   }
 
-  getListas(): Observable<any[]> {
-    return of(this.listas);
+  public getListas(): Observable<Listas[]> {
+    return this.HttpClient.get<Listas[]>(this.listaURL + 'listas');
   }
 
-  addCancion(cancion: any): void {
-    // Lógica para agregar una nueva canción (se realiza una llamada HTTP aquí)
-    this.canciones.push(cancion);
+  public addCancion(cancion: Cancion): Observable<Cancion> {
+    return this.HttpClient.post<Cancion>(this.cancionURL + `create`, cancion);
   }
 
-  updateCancion(cancion: any): void {
-    // Lógica para actualizar una canción existente (se realiza una llamada HTTP aquí)
-    const index = this.canciones.findIndex(existingCancion => existingCancion.id === cancion.id);
-    if (index !== -1) {
-      this.canciones[index] = cancion;
-    }
+  public updateCancion(id: number, cancion: Cancion): Observable<Cancion> {
+    return this.HttpClient.put<Cancion>(this.cancionURL + `update/${id}`, cancion);
   }
 
-  deleteCancion(id: number): void {
-    // Lógica para eliminar una canción (se realiza una llamada HTTP aquí)
-    this.canciones = this.canciones.filter(cancion => cancion.id !== id);
+  public deleteCancion(id: number): Observable<Cancion> {
+    return this.HttpClient.delete<Cancion>(this.cancionURL + `delete/${id}`);
   }
 }

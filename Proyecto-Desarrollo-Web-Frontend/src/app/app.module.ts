@@ -9,19 +9,20 @@ import { AppComponent } from './app.component';
 import { ContactenosComponent } from './contactenos/contactenos.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { CancionesComponent } from './pages/admin/canciones/canciones.component';
-import { CrearAdminComponent } from './pages/admin/crear-admin/crear-admin.component';
 import { GenerosComponent } from './pages/admin/generos/generos.component';
-import { IniciarAdminComponent } from './pages/admin/iniciar-admin/iniciar-admin.component';
-import { BienvenidaComponent } from './pages/home/bienvenida/bienvenida.component';
-import { WelcomeComponent } from './pages/homeAdmin/welcome/welcome.component';
-import { BuscarCancionComponent } from './pages/listas/buscar-cancion/buscar-cancion.component';
-import { VerListasComponent } from './pages/listas/ver-listas/ver-listas.component';
-import { VotarDesvotarComponent } from './pages/listas/votar-desvotar/votar-desvotar.component';
+import { BienvenidaComponent } from './pages/usuario/bienvenida/bienvenida.component';
+import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { BuscarCancionComponent } from './pages/usuario/buscar-cancion/buscar-cancion.component';
+import { VerListasComponent } from './pages/usuario/ver-listas/ver-listas.component';
+import { VotarDesvotarComponent } from './pages/usuario/votar-desvotar/votar-desvotar.component';
 import { SeleccionUsuarioComponent } from './pages/tipoUsuario/seleccion-usuario/seleccion-usuario.component';
+import { CrearAdminComponent } from './pages/admin/crear-admin/crear-admin.component';
+import { IniciarAdminComponent } from './pages/admin/iniciar-admin/iniciar-admin.component';
 import { CrearCuentaComponent } from './pages/usuario/crear-cuenta/crear-cuenta.component';
 import { IniciarSesionComponent } from './pages/usuario/iniciar-sesion/iniciar-sesion.component';
+
 import { ProyectoComponent } from './proyecto/proyecto.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

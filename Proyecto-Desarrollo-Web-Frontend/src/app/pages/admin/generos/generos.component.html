@@ -7,15 +7,12 @@
     <!-- Formulario para agregar/editar géneros -->
     <div class="genre-form">
       <h3>{{ editMode ? 'Editar Género' : 'Crear un género' }}</h3>
-      <form [formGroup]="genreForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="listaForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="name">Nombre del género:</label>
-          <input type="text" id="name" formControlName="name" />
+          <label for="genero">Nombre del género:</label>
+          <input type="text" id="genero" formControlName="genero" />
         </div>
-        <div class="form-group">
-          <label for="description">Descripción del género:</label>
-          <textarea id="description" formControlName="description"></textarea>
-        </div>
+      
         <div>
           <button type="submit">{{ editMode ? 'Actualizar género' : 'Agregar género' }}</button>
           <button type="button" (click)="onCancelClick()">Cancelar</button>
@@ -28,13 +25,13 @@
     <div class="genre-list">
       <h3>Ver lista de Géneros:</h3>
       <ul>
-        <li *ngFor="let genre of genres">
+        <li *ngFor="let lista of listas">
           <div>
-            {{ genre.name }} - {{ genre.description }}
+            {{ lista.id }} - {{ lista.genero }}
           </div>
           <div class="actions">
-            <button class="edit" (click)="editGenre(genre.id)">Editar género</button>
-            <button class="delete" (click)="deleteGenre(genre.id)">Eliminar género</button>
+            <button *ngIf="lista.id !== undefined" class="edit" (click)="editLista(lista.id)">Editar género</button>
+            <button *ngIf="lista.id !== undefined" class="delete" (click)="deleteLista(lista.id)">Eliminar género</button>
           </div>
         </li>
       </ul>

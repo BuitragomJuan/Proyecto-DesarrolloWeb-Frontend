@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Listas } from 'src/app/models/listas.model';
 import { GeneroService } from 'src/app/services/Admin/generos.service';
 
 @Component({
@@ -10,67 +11,77 @@ import { GeneroService } from 'src/app/services/Admin/generos.service';
   styleUrls: ['./generos.component.css']
 })
 export class GenerosComponent implements OnInit {
-  genres: any[] = [];
-  selectedGenre: any;
-  genreForm: FormGroup;
+  listas: Listas[] = [];
+  selectedLista: any;
+  listaForm: FormGroup;
   editMode: boolean = false;
   errorMessage: string = '';
-  originalRoute: string = '';
+  //originalRoute: string = '';
 
   constructor(private generoService: GeneroService, private fb: FormBuilder, private router: Router) {
-    this.genreForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required]
+    this.listaForm = this.fb.group({
+      genero: ['', Validators.required],
     });
   }
 
   ngOnInit() {
-    this.loadGenres();
+    this.loadListas();
     this.initForm();
   }
 
-  loadGenres() {
-    this.generoService.getGenres().subscribe(data => {
-      this.genres = data;
+  loadListas() {
+    this.generoService.getListas().subscribe(data => {
+      this.listas = data;
     });
   }
 
   initForm() {
-    this.genreForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required]
+    this.listaForm = this.fb.group({
+      genero: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    const formValues = this.genreForm.value;
+    const formValues = this.listaForm.value;
     
     if (this.editMode) {
       // Lógica para editar un género existente
-      this.generoService.updateGenre({
-        id: this.selectedGenre.id,
-        name: formValues.name,
-        description: formValues.description
-      });
+      this.generoService.updateLista(this.selectedLista.id,{
+        id: this.selectedLista.id,
+        genero: formValues.genero,
+      }).subscribe(
+        () => {
+          this.loadListas();
+          this.resetForm();
+        },
+        (error) => {
+          this.errorMessage = 'Error al actualizar el género.';
+        }
+      );
     } else {
-      // Lógica para agregar un nuevo género
-      this.generoService.addGenre({
-        id: this.genres.length + 1,
-        name: formValues.name,
-        description: formValues.description
-      });
+      this.generoService.createLista({
+        genero: formValues.genero,
+      }).subscribe(
+        () => {
+          this.loadListas();
+          this.resetForm();
+        },
+        (error) => {
+          this.errorMessage = 'Error al agregar el género.';
+        }
+      );
     }
 
-    this.loadGenres(); // Recargar la lista después de agregar o editar un género
+    this.loadListas(); // Recargar la lista después de agregar o editar un género
     this.resetForm();
     
   }
 
   resetForm() {
-    this.selectedGenre = undefined;
+    this.selectedLista = undefined;
     this.editMode = false;
     this.errorMessage = '';
-    this.genreForm.reset();
+    this.listaForm.reset();
   }
 
 
@@ -81,25 +92,41 @@ export class GenerosComponent implements OnInit {
   
   }
 
-  editGenre(id: number) {
-  
-    this.generoService.getGenre(id).subscribe(genre => {
-      if (genre) {
-        this.selectedGenre = genre;
-        this.editMode = true;
-        this.genreForm.patchValue({
-          name: genre.name,
-          description: genre.description
-        });
-      }
-    });
+  editLista(id: number) {
+    if (id !== undefined) {
+      this.generoService.getListasById(id).subscribe(
+        (lista) => {
+          if (lista) {
+            this.selectedLista = lista;
+            this.editMode = true;
+            this.listaForm.patchValue({
+              genero: lista.genero,
+            });
+          }
+        },
+        (error) => {
+          this.errorMessage = 'Error al obtener el género.';
+        }
+      );
+    } else {
+      console.error('ID indefinido');
+    }
   }
   
-
-  deleteGenre(id: number) {
-    this.generoService.deleteGenre(id);
-    this.loadGenres(); // Recargar la lista después de eliminar un género
-    this.resetForm();
+  deleteLista(id: number) {
+    if (id !== undefined) {
+      this.generoService.deleteLista(id).subscribe(
+        () => {
+          this.loadListas();
+          this.resetForm();
+        },
+        (error) => {
+          this.errorMessage = 'Error al eliminar la canción.';
+        }
+      );
+    } else {
+      console.error('ID de canción indefinido');
+    }
   }
 }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Cancion } from 'src/app/models/cancion.model';
+import { Listas } from 'src/app/models/listas.model';
 import { CancionesService } from 'src/app/services/Admin/canciones.service';
 
 @Component({
@@ -11,21 +13,25 @@ import { CancionesService } from 'src/app/services/Admin/canciones.service';
 
 export class CancionesComponent implements OnInit {
 
-  canciones: any[] = [];
-  listas: any[] = [];
+  canciones: Cancion[] = [];
+  listas: Listas[] = [];
   selectedCancion: any;
   cancionForm: FormGroup;
   editMode: boolean = false;
   errorMessage: string = '';
 
-  constructor(private cancionesService: CancionesService, private fb: FormBuilder, private router: Router) {
+  constructor(
+    private cancionesService: CancionesService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.cancionForm = this.fb.group({
       nombre: ['', Validators.required],
       genero: ['', Validators.required],
       rating: ['', Validators.required],
       artista: ['', Validators.required],
       album: ['', Validators.required],
-      listasID: ['', Validators.required]
+      listasID: ['', Validators.required],
     });
   }
 
@@ -35,46 +41,59 @@ export class CancionesComponent implements OnInit {
   }
 
   loadListas() {
-    this.cancionesService.getListas().subscribe(data => {
+    this.cancionesService.getListas().subscribe((data) => {
       this.listas = data;
     });
   }
 
   loadCanciones() {
-    this.cancionesService.getCanciones().subscribe(data => {
+    this.cancionesService.getCanciones().subscribe((data) => {
       this.canciones = data;
     });
   }
 
   onSubmit() {
     const formValues = this.cancionForm.value;
-    
-    if (this.editMode) {
-      // Lógica para editar una canción existente
-      this.cancionesService.updateCancion({
-        id: this.selectedCancion.id,
-        nombre: formValues.nombre,
-        genero: formValues.genero,
-        rating: formValues.rating,
-        artista: formValues.artista,
-        album: formValues.album,
-        listasID: formValues.listasID
-      });
-    } else {
-      // Lógica para agregar una nueva canción
-      this.cancionesService.addCancion({
-        id: this.canciones.length + 1,
-        nombre: formValues.nombre,
-        genero: formValues.genero,
-        rating: formValues.rating,
-        artista: formValues.artista,
-        album: formValues.album,
-        listasID: formValues.listasID
-      });
-    }
 
-    this.loadCanciones(); // Recargar la lista después de agregar o editar una canción
-    this.resetForm();
+    if (this.editMode) {
+      this.cancionesService
+        .updateCancion(this.selectedCancion.id, {
+          nombre: formValues.nombre,
+          genero: formValues.genero,
+          rating: formValues.rating,
+          artista: formValues.artista,
+          album: formValues.album,
+          lista: formValues.lista,
+        })
+        .subscribe(
+          () => {
+            this.loadCanciones();
+            this.resetForm();
+          },
+          (error) => {
+            this.errorMessage = 'Error al actualizar la canción.';
+          }
+        );
+    } else {
+      this.cancionesService
+        .addCancion({
+          nombre: formValues.nombre,
+          genero: formValues.genero,
+          rating: formValues.rating,
+          artista: formValues.artista,
+          album: formValues.album,
+          lista: formValues.lista,
+        })
+        .subscribe(
+          () => {
+            this.loadCanciones();
+            this.resetForm();
+          },
+          (error) => {
+            this.errorMessage = 'Error al agregar la canción.';
+          }
+        );
+    }
   }
 
   resetForm() {
@@ -86,32 +105,49 @@ export class CancionesComponent implements OnInit {
 
   onCancelClick() {
     this.resetForm();
-  
-    this.router.navigate(['/crud-canciones']); // Redirige a la página de bienvenida si no estás en modo de edición o la ruta original es '/crud-generos'
-  
+    this.router.navigate(['/crud-canciones']);
   }
 
   editCancion(id: number) {
-    this.cancionesService.getCancion(id).subscribe(cancion => {
-      if (cancion) {
-        this.selectedCancion = cancion;
-        this.editMode = true;
-        this.cancionForm.patchValue({
-          nombre: cancion.nombre,
-          genero: cancion.genero,
-          rating: cancion.rating,
-          artista: cancion.artista,
-          album: cancion.album,
-          listasID: cancion.listasID
-        });
-      }
-    });
+    if (id !== undefined) {
+      this.cancionesService.getCancion(id).subscribe(
+        (cancion) => {
+          if (cancion) {
+            this.selectedCancion = cancion;
+            this.editMode = true;
+            this.cancionForm.patchValue({
+              nombre: cancion.nombre,
+              genero: cancion.genero,
+              rating: cancion.rating,
+              artista: cancion.artista,
+              album: cancion.album,
+              lista: cancion.lista,
+            });
+          }
+        },
+        (error) => {
+          this.errorMessage = 'Error al obtener la canción.';
+        }
+      );
+    } else {
+      console.error('ID de canción indefinido');
+    }
   }
 
   deleteCancion(id: number) {
-    this.cancionesService.deleteCancion(id);
-    this.loadCanciones(); // Recargar la lista después de eliminar una canción
-    this.resetForm();
+    if (id !== undefined) {
+      this.cancionesService.deleteCancion(id).subscribe(
+        () => {
+          this.loadCanciones();
+          this.resetForm();
+        },
+        (error) => {
+          this.errorMessage = 'Error al eliminar la canción.';
+        }
+      );
+    } else {
+      console.error('ID de canción indefinido');
+    }
   }
 }
 

@@ -1,60 +1,61 @@
-<link rel = "stylesheet" type = "text/css" href = "../canciones/canciones.component.css">
+<link rel="stylesheet" type="text/css" href="../canciones/canciones.component.css">
 <!-- canciones.component.html -->
 <div class="container">
-    <h2>Gestión de Canciones</h2>
-    <!-- Formulario para agregar/editar canciones -->
-    <div class="cancion-form">
-      <h3>{{ editMode ? 'Editar Canción' : 'Agregar una Canción' }}</h3>
-      <form [formGroup]="cancionForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="nombre">Nombre de la Canción:</label>
-          <input type="text" id="nombre" formControlName="nombre" />
-        </div>
-        <div class="form-group">
-          <label for="genero">Género:</label>
-          <input type="text" id="genero" formControlName="genero" />
-        </div>
-        <div class="form-group">
-          <label for="rating">Rating:</label>
-          <input type="number" id="rating" formControlName="rating" />
-        </div>
-        <div class="form-group">
-          <label for="artista">Artista:</label>
-          <input type="text" id="artista" formControlName="artista" />
-        </div>
-        <div class="form-group">
-          <label for="album">Álbum:</label>
-          <input type="text" id="album" formControlName="album" />
-        </div>
-        <div class="form-group">
-            <label for="listasID">Lista:</label>
-            <select id="listasID" formControlName="listasID">
-              <option *ngFor="let lista of listas" [value]="lista.id">{{ lista.nombre }}</option>
-            </select>
-          </div>
-        <div>
-          <button type="submit">{{ editMode ? 'Actualizar canción' : 'Agregar canción' }}</button>
-          <button type="button" (click)="onCancelClick()">Cancelar</button>
-        </div>
-      </form>
-      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-    </div>
-  
-    <!-- Lista de canciones existentes -->
-    <div class="cancion-list">
-      <h3>Ver lista de Canciones:</h3>
-      <ul>
-        <li *ngFor="let cancion of canciones">
-          <div>
-            {{ cancion.nombre }} - {{ cancion.artista }} - {{ cancion.anoLanzamiento }} - {{ cancion.genero }}
-          </div>
-          <div class="actions">
-            <button class="edit" (click)="editCancion(cancion.id)">Editar Canción</button>
-            <button class="delete" (click)="deleteCancion(cancion.id)">Eliminar Canción</button>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <router-outlet></router-outlet>
+  <h2>Gestión de Canciones</h2>
+  <!-- Formulario para agregar/editar canciones -->
+  <div class="cancion-form">
+    <h3>{{ editMode ? 'Editar Canción' : 'Agregar una Canción' }}</h3>
+    <form [formGroup]="cancionForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre de la Canción:</label>
+        <input type="text" id="nombre" formControlName="nombre" />
+      </div>
+      <div class="form-group">
+        <label for="genero">Género:</label>
+        <input type="text" id="genero" formControlName="genero" />
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" formControlName="rating" />
+      </div>
+      <div class="form-group">
+        <label for="artista">Artista:</label>
+        <input type="text" id="artista" formControlName="artista" />
+      </div>
+      <div class="form-group">
+        <label for="album">Álbum:</label>
+        <input type="text" id="album" formControlName="album" />
+      </div>
+      <div class="form-group">
+        <label for="lista">Lista:</label>
+        <select id="lista" formControlName="lista">
+          <option *ngFor="let lista of listas" [value]="lista.id">{{ lista.id }} - {{ lista.genero }}</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit">{{ editMode ? 'Actualizar canción' : 'Agregar canción' }}</button>
+        <button type="button" (click)="onCancelClick()">Cancelar</button>
+      </div>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
   </div>
+
+  <!-- Lista de canciones existentes -->
+  <div class="cancion-list">
+    <h3>Ver lista de Canciones:</h3>
+    <ul>
+      <li *ngFor="let cancion of canciones">
+        <div>
+          {{ cancion.nombre }} - {{ cancion.artista }} - {{ cancion.album }} - {{ cancion.genero }} - {{ cancion.lista }}
+        </div>
+        <div class="actions">
+          <button *ngIf="cancion.id !== undefined" class="edit" (click)="editCancion(cancion.id)">Editar Canción</button>
+          <button *ngIf="cancion.id !== undefined" class="delete" (click)="deleteCancion(cancion.id)">Eliminar Canción</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
   

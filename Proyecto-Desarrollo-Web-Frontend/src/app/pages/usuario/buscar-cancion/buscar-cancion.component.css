@@ -1,0 +1,63 @@
+/* ver-canciones.component.css */
+
+.ver-canciones-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+}
+
+.busqueda-canciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.busqueda-canciones label {
+  font-weight: bold;
+}
+
+.busqueda-canciones input {
+  padding: 8px;
+}
+
+.busqueda-canciones button {
+  margin: auto;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.busqueda-canciones button:hover {
+  background-color: #45a049;
+}
+
+.canciones {
+  margin-top: 20px;
+}
+
+.canciones ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.canciones li {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.canciones div {
+  font-size: 16px;
+  color: #333;
+}
+

@@ -2,43 +2,36 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+//import { Cancion } from 'src/app/models/cancion.model';
+import { Listas } from 'src/app/models/listas.model';
 
-interface Genero {
-  id: number;
-  name: string;
-  description: string;
-}
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneroService {
-  private genres: Genero[] = []; // Deberías obtener esto de tu backend
 
-  getGenres(): Observable<Genero[]> {
-    return of(this.genres);
+  listaURL = 'http://localhost:9090/lista/';
+
+  constructor(private HttpClient: HttpClient){}
+
+  public getListas(): Observable<Listas[]> {
+    return this.HttpClient.get<Listas[]>(this.listaURL + 'listas');
+  }
+  public getListasById(id: number): Observable<Listas> {
+    return this.HttpClient.get<Listas>(this.listaURL + `detail/${id}`);
+  }
+  public createLista(listas: Listas): Observable<Listas> {
+    return this.HttpClient.post<Listas>(this.listaURL + `create`, listas);
   }
 
-  getGenre(id: number): Observable<Genero | undefined> {
-    return of(this.genres.find(genre => genre.id === id));
+  public updateLista(id: number, listas: Listas): Observable<Listas> {
+    return this.HttpClient.put<Listas>(this.listaURL + `update/${id}`, listas);
   }
 
-  addGenre(genre: Genero): void {
-    // Lógica para agregar un nuevo género (puedes realizar una llamada HTTP aquí)
-    this.genres.push(genre);
-  }
-
-  updateGenre(genre: Genero): void {
-    // Lógica para actualizar un género existente (puedes realizar una llamada HTTP aquí)
-    const index = this.genres.findIndex(existingGenre => existingGenre.id === genre.id);
-    if (index !== -1) {
-      this.genres[index] = genre;
-    }
-  }
-
-  deleteGenre(id: number): void {
-    // Lógica para eliminar un género (puedes realizar una llamada HTTP aquí)
-    this.genres = this.genres.filter(genre => genre.id !== id);
+  public deleteLista(id: number): Observable<Listas> {
+    return this.HttpClient.delete<Listas>(this.listaURL + `delete/${id}`);
   }
 }
 

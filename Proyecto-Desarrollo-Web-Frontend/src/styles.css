@@ -1,216 +1,222 @@
-
 body {
-    background-image: url('assets/images/goodvibes.jpg');
-    background-size: cover; /* Ajusta el tamaño para cubrir todo el fondo */
-    background-position: center center; /* Centra la imagen en la página */
-  }
-  
- 
- * {
-     margin: 0;
-     padding: 0;
-     font-family:sans-serif;
+   background-image: url('assets/images/goodvibes.jpg');
+   background-size: cover; /* Ajusta el tamaño para cubrir todo el fondo */
+   background-position: center center; /* Centra la imagen en la página */
  }
  
- .banner {
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family:sans-serif;
+}
+
+.banner {
+   width: 100%;
+   height: 95vh;
+   background-color:172A3A;
+   background-size: cover;
+   background-position: center;
+}
+
+label {
+   color: #fff;
+}
+
+.dateLabel {
+   color:red;
+}
+
+.hiddenElm {
+
+   visibility: hidden;
+   color: red;
+}
+
+form {
+   text-align: center;
+}
+
+.navbar {
+    width: 90%;
+    margin: auto;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    width:150px;
+    cursor:pointer;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: black;
+    text-transform:none;
+    font-weight: bolder; /* Opciones: normal, bold, bolder, lighter */
+   text-decoration: underline; /* Opciones: underline, overline, line-through */
+}
+
+.navbar ul li::after{
+    content:'';
+    height: 5px;
+    width: 0%;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: 0.5s;
+
+ }
+
+ .navbar ul li:hover::after{
     width: 100%;
-    height: 95vh;
-    background-color:172A3A;
-    background-size: cover;
-    background-position: center;
  }
- 
- label {
+
+ .content {
+   width: 100%;
+   text-align: center;
+   color: black;
+   font-weight: bolder; /* Opciones: normal, bold, bolder, lighter */
+   text-decoration: underline; /* Opciones: underline, overline, line-through */
+   /*background-color: #ffcc00; /* Color de fondo para resaltar el texto */
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agrega una sombra al texto */
+
+ }
+
+ /* Agregadas para "equipo" */
+ .teamt {
+   width: 100%;
+    position: absolute;
+    top: 160%;
+    transform: translateY(-50%);
+    text-align: center;
     color: #fff;
  }
- 
- .dateLabel {
-    color:red;
+
+ /* Estilos para el grupo de imágenes */
+.images {
+   display: flex;
+   justify-content: space-around;
+   align-items: flex-start;
+   margin-top: 20px;
+}
+
+.image-wrapper {
+   text-align: center;
+}
+
+/* Estilos para cada imagen */
+img {
+   width: 250px;
+   height: auto;
+   border-radius: 20px;
+   border: 2px solid #ccc;
+   margin: 0 10px;
+}
+
+.titulos_unit {
+   font-weight: bold;
+}
+/*
+p{
+   margin-top: 10px;
+   width: 250px;
+}
+*/
+.parrafos_proyecto {
+   
+   width: 650px;
+   text-align:justify;
+   color: black;
+   margin-top: 3%;
+   margin-bottom: 3%;
+   margin-left: 24%;
+   margin-right: 76%;
+
+}
+
+
+ /* Hasta aquí xd */
+
+ .subtext {
+    color: 09BC8A;
  }
- 
- .hiddenElm {
- 
-    visibility: hidden;
-    color: red;
+
+ .maint {
+    color: 74B3CE;
  }
- 
- form {
+
+ button {
+    width: 300px;
+    padding: 15px 0;
     text-align: center;
- }
- 
- .navbar {
-     width: 90%;
-     margin: auto;
-     padding: 50px 0;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
- }
- 
- .logo{
-     width:150px;
-     cursor:pointer;
- }
- 
- .navbar ul li {
-     list-style: none;
-     display: inline-block;
-     margin: 0 20px;
-     position: relative;
- }
- 
- .navbar ul li a {
-     text-decoration: none;
-     color: FFFFFF;
-     text-transform:none;
- }
- 
- .navbar ul li::after{
-     content:'';
-     height: 3px;
-     width: 0%;
-     background: #009688;
-     position: absolute;
-     left: 0;
-     bottom: -5px;
-     transition: 0.5s;
- 
-  }
- 
-  .navbar ul li:hover::after{
-     width: 100%;
-  }
- 
-  .content {
-    width: 100%;
-    text-align: center;
-    color: black;   
-  }
- 
-  /* Agregadas para "equipo" */
-  .teamt {
-    width: 100%;
-     position: absolute;
-     top: 160%;
-     transform: translateY(-50%);
-     text-align: center;
-     color: #fff;
-  }
- 
-  /* Estilos para el grupo de imágenes */
- .images {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    margin-top: 20px;
- }
- 
- .image-wrapper {
-    text-align: center;
- }
- 
- /* Estilos para cada imagen */
- img {
-    width: 250px;
-    height: auto;
+    margin: 25px 10px;
     border-radius: 20px;
-    border: 2px solid #ccc;
-    margin: 0 10px;
- }
- 
- .titulos_unit {
     font-weight: bold;
+    border: 3px solid #007d96;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
  }
- /*
- p{
-    margin-top: 10px;
-    width: 250px;
+
+ span {
+    background: #009688;
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+
  }
- */
- .parrafos_proyecto {
-    
-    width: 650px;
-    text-align:justify;
-    color: black;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    margin-left: 24%;
-    margin-right: 76%;
- 
+
+ button:hover span{
+    width: 100%;
  }
- 
- 
-  /* Hasta aquí xd */
- 
-  .subtext {
-     color: 09BC8A;
-  }
- 
-  .maint {
-     color: 74B3CE;
-  }
- 
-  button {
-     width: 300px;
-     padding: 15px 0;
-     text-align: center;
-     margin: 25px 10px;
-     border-radius: 20px;
-     font-weight: bold;
-     border: 3px solid #007d96;
-     background: transparent;
-     color: rgb(0, 0, 0);
-     cursor: pointer;
-     position: relative;
-     overflow: hidden;
-  }
- 
-  span {
-     background: #009688;
-     height: 100%;
-     width: 0;
-     border-radius: 25px;
-     position: absolute;
-     left: 0;
-     bottom: 0;
-     z-index: -1;
-     transition: 0.5s;
- 
-  }
- 
-  button:hover span{
-     width: 100%;
-  }
- 
-  button:hover{
-     border: none;
-  }
- 
-  .tablaProyecto {
- 
-    border-collapse: collapse;
-    width: 80%;
-    margin: 0 auto;
+
+ button:hover{
+    border: none;
  }
- 
- 
- tr:nth-child(even) {
-    background-color: #f2f2f2;
- }
- 
- .columnaProyecto {
-    padding: 10px;
-    border: 1px solid #ccc;
- }
- 
- .columnaProyecto:hover {
-    background-color: #e0e0e0;
- }
- 
- .h3Proyecto {
- 
-    color:black;
- 
- }
+
+ .tablaProyecto {
+
+   border-collapse: collapse;
+   width: 80%;
+   margin: 0 auto;
+}
+
+
+tr:nth-child(even) {
+   background-color: #f2f2f2;
+}
+
+.columnaProyecto {
+   padding: 10px;
+   border: 1px solid #ccc;
+}
+
+.columnaProyecto:hover {
+   background-color: #e0e0e0;
+}
+
+.h3Proyecto {
+
+   color:black;
+
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
