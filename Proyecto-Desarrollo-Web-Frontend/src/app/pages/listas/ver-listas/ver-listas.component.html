@@ -3,9 +3,9 @@
 <div class="ver-listas-container">
   <h2>Listas de Reproducción por Género Musical</h2>
   <label>Selecciona un género musical:</label>
-  <select [(ngModel)]="generoSeleccionado" (change)="actualizarListasPorGenero()">
+  <select [(ngModel)]="generoSeleccionado" (change)="actualizarListasPorGenero()" id="selectGenre">
     <option value="Rock">Rock</option>
-    <option value="Pop">Pop</option>
+    <option value="Pop" id="pop">Pop</option>
     <!-- Agrega más géneros aquí -->
   </select>
 

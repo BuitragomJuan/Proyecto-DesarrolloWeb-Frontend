@@ -24,7 +24,7 @@ export class AutenticacionService {
   }
   authenticateAdmin(email: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/authenticate`;  // Ajusta la URL según la ruta de autenticación en tu backend
-    const body = { username: email, password };
+    const body = { email, password };
 
     return this.http.post(url, body).pipe(
       tap((res: any) => {

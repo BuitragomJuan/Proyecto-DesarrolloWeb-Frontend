@@ -25,6 +25,7 @@ export class IniciarAdminComponent {
       }),
       catchError(error => {
         // Autenticación fallida, mostrar un mensaje de error
+        this.router.navigate(['/welcome']); 
         this.mensajeError = 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
         throw error;
       })

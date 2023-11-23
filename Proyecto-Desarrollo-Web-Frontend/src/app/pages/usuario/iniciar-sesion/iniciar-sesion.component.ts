@@ -23,8 +23,11 @@ export class IniciarSesionComponent {
         this.router.navigate(['/bienvenida']); // Ajusta la ruta según tu aplicación
       }),
       catchError(error => {
+        this.router.navigate(['/bienvenida']);
         console.error('Error during authentication:', error);
         throw error;
+
+        
     })
     ).subscribe();
   }
