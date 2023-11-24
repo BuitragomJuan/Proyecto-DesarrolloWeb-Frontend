@@ -1,4 +1,4 @@
-import { Listas } from "./listas.model";
+import { Lista } from "./lista.model";
 
 export class Cancion{
     id?: number; 
@@ -7,14 +7,16 @@ export class Cancion{
     genero: string;
     nombre:string;
     rating:number;
-    lista: Listas;
+    listaId?: number;
+    lista?:Lista;
 
-    constructor(album: string, artista: string, genero: string, nombre:string, rating:number, lista:Listas){
+    constructor(album: string, artista: string, genero: string, nombre:string, rating:number, listaId?: number, lista?: Lista){
         this.album = album;
         this.artista = artista;
         this.genero = genero;
         this.nombre = nombre;
         this.rating = rating;
+        this.listaId = listaId;
         this.lista = lista;
     }
 }

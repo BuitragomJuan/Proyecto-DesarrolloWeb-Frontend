@@ -8,7 +8,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class BuscarCancionService {
 
-  private verCancionesURL = 'http://localhost:9090/cancion/';
+  private verCancionesURL = 'http://localhost:9092/cancion/';
 
   constructor(private httpClient: HttpClient) { }
 

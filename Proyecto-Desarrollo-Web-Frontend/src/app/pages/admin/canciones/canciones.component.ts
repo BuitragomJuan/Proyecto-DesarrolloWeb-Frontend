@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cancion } from 'src/app/models/cancion.model';
-import { Listas } from 'src/app/models/listas.model';
+import { Lista } from 'src/app/models/lista.model';
 import { CancionesService } from 'src/app/services/Admin/canciones.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { CancionesService } from 'src/app/services/Admin/canciones.service';
 export class CancionesComponent implements OnInit {
 
   canciones: Cancion[] = [];
-  listas: Listas[] = [];
+  lista: Lista[] = [];
   selectedCancion: any;
   cancionForm: FormGroup;
   editMode: boolean = false;
@@ -31,7 +31,7 @@ export class CancionesComponent implements OnInit {
       rating: ['', Validators.required],
       artista: ['', Validators.required],
       album: ['', Validators.required],
-      listasID: ['', Validators.required],
+      listaId: ['', Validators.required],
     });
   }
 
@@ -42,7 +42,7 @@ export class CancionesComponent implements OnInit {
 
   loadListas() {
     this.cancionesService.getListas().subscribe((data) => {
-      this.listas = data;
+      this.lista = data;
     });
   }
 
@@ -63,7 +63,7 @@ export class CancionesComponent implements OnInit {
           rating: formValues.rating,
           artista: formValues.artista,
           album: formValues.album,
-          lista: formValues.lista,
+          listaId: formValues.listaId,
         })
         .subscribe(
           () => {
@@ -82,7 +82,7 @@ export class CancionesComponent implements OnInit {
           rating: formValues.rating,
           artista: formValues.artista,
           album: formValues.album,
-          lista: formValues.lista,
+          listaId: formValues.listaId,
         })
         .subscribe(
           () => {
@@ -121,7 +121,7 @@ export class CancionesComponent implements OnInit {
               rating: cancion.rating,
               artista: cancion.artista,
               album: cancion.album,
-              lista: cancion.lista,
+              listaId: cancion.listaId,
             });
           }
         },

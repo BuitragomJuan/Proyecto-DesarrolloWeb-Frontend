@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Cancion } from 'src/app/models/cancion.model';
-import { Listas } from 'src/app/models/listas.model';
+import { Lista } from 'src/app/models/lista.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,8 @@ import { Listas } from 'src/app/models/listas.model';
 
 export class CancionesService {
 
-  cancionURL= 'http://localhost:9090/cancion/';
-  listaURL = 'http://localhost:9090/lista/';
+  cancionURL= 'http://localhost:9092/cancion/';
+  listaURL = 'http://localhost:9092/lista/';
 
   constructor(private HttpClient: HttpClient){}
 
@@ -23,8 +23,8 @@ export class CancionesService {
     return this.HttpClient.get<Cancion>(this.cancionURL + `detail/${id}`);
   }
 
-  public getListas(): Observable<Listas[]> {
-    return this.HttpClient.get<Listas[]>(this.listaURL + 'listas');
+  public getListas(): Observable<Lista[]> {
+    return this.HttpClient.get<Lista[]>(this.listaURL + 'listas');
   }
 
   public addCancion(cancion: Cancion): Observable<Cancion> {

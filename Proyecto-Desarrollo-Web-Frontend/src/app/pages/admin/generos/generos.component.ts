@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Listas } from 'src/app/models/listas.model';
+import { Lista } from 'src/app/models/lista.model';
 import { GeneroService } from 'src/app/services/Admin/generos.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { GeneroService } from 'src/app/services/Admin/generos.service';
   styleUrls: ['./generos.component.css']
 })
 export class GenerosComponent implements OnInit {
-  listas: Listas[] = [];
+  listas: Lista[] = [];
   selectedLista: any;
   listaForm: FormGroup;
   editMode: boolean = false;

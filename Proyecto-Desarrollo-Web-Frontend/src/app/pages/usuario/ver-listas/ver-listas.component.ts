@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VerListasService } from 'src/app/services/Usuario/ver-listas.service';
-import { Listas } from 'src/app/models/listas.model';
+import { Lista } from 'src/app/models/lista.model';
 import { Cancion } from 'src/app/models/cancion.model';
 
 @Component({
@@ -9,9 +9,9 @@ import { Cancion } from 'src/app/models/cancion.model';
   styleUrls: ['./ver-listas.component.css']
 })
 export class VerListasComponent {
-  listas: Listas[] = [];
+  listas: Lista[] = [];
   canciones: Cancion[] = [];
-  selectedLista: Listas | undefined;
+  selectedLista: Lista | undefined;
 
   constructor(private verListasService: VerListasService) { }
 
@@ -25,7 +25,7 @@ export class VerListasComponent {
     });
   }
 
-  verCanciones(lista: Listas) {
+  verCanciones(lista: Lista) {
     this.selectedLista = lista;
     // Llama al servicio para obtener las canciones de la lista seleccionada
     this.verListasService.getCancionesPorLista(lista.id!).subscribe(

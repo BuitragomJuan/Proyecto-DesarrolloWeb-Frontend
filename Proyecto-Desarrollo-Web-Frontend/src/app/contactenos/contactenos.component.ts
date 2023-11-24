@@ -29,7 +29,7 @@ export class ContactenosComponent {
 
     this.formData.fecha = this.datePipe.transform(this.formData.fecha, 'yyyy-MM-dd');
    
-      this.contactenosService.saveContactenosData(this.formData).pipe(
+      this.contactenosService.create(this.formData).pipe(
         tap(response => {
           console.log('Form data sent successfully:', response);
 
